@@ -1,5 +1,12 @@
-const CACHE_NAME = 'foodmaster-v2'
-const APP_FILES = ['/', '/manifest.webmanifest', '/icons/icon-192.svg', '/icons/icon-512.svg']
+const CACHE_NAME = 'foodmaster-v3'
+const BASE_PATH = new URL(self.registration.scope).pathname.replace(/\/$/, '')
+const withBase = (path) => `${BASE_PATH}${path}`
+const APP_FILES = [
+  withBase('/'),
+  withBase('/manifest.webmanifest'),
+  withBase('/icons/icon-192.svg'),
+  withBase('/icons/icon-512.svg'),
+]
 
 self.addEventListener('install', (event) => {
   event.waitUntil(
