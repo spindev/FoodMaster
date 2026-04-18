@@ -150,7 +150,9 @@ export default function App() {
       <header className="app-header">
         <div className="app-header-content">
           <div className="app-title-wrap">
-            <div className="app-icon">🍱</div>
+            <div className="app-icon" role="img" aria-label="FoodMaster icon">
+              🍱
+            </div>
             <div>
               <h1>{t.appTitle}</h1>
               <p className="app-subtitle">{t.appSubtitle}</p>
@@ -265,7 +267,9 @@ export default function App() {
         </section>
       </main>
 
-      <footer className="app-footer">Made by SpinDev &amp; Copilot with ❤️</footer>
+      <footer className="app-footer">
+        Made by SpinDev &amp; Copilot with <span role="img" aria-label="love">❤️</span>
+      </footer>
     </div>
   )
 }

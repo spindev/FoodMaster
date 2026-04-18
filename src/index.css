@@ -175,6 +175,11 @@ button {
   transition: border-color 0.15s ease, background-color 0.15s ease, color 0.15s ease;
 }
 
+input:hover,
+select:hover {
+  border-color: var(--accent);
+}
+
 input:focus-visible,
 select:focus-visible,
 button:focus-visible {
