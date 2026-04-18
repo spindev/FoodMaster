@@ -8,6 +8,8 @@
   --border: #e2e8f0;
   --accent: #2563eb;
   --accent-hover: #1d4ed8;
+  --accent-soft: rgb(37 99 235 / 0.12);
+  --focus-ring: rgb(37 99 235 / 0.22);
   --header-bg: #ffffff;
   --shadow: 0 1px 2px rgb(15 23 42 / 0.06);
 }
@@ -22,6 +24,8 @@
   --border: #334155;
   --accent: #3b82f6;
   --accent-hover: #2563eb;
+  --accent-soft: rgb(59 130 246 / 0.2);
+  --focus-ring: rgb(59 130 246 / 0.24);
   --header-bg: #0f172a;
   --shadow: 0 1px 2px rgb(2 6 23 / 0.6);
 }
@@ -80,7 +84,7 @@ main,
   width: 2.1rem;
   height: 2.1rem;
   border-radius: 0.7rem;
-  background: color-mix(in srgb, var(--accent) 12%, var(--surface));
+  background: var(--accent-soft);
   display: grid;
   place-items: center;
 }
@@ -175,8 +179,8 @@ input:focus-visible,
 select:focus-visible,
 button:focus-visible {
   outline: none;
-  border-color: color-mix(in srgb, var(--accent) 70%, var(--border));
-  box-shadow: 0 0 0 2px color-mix(in srgb, var(--accent) 20%, transparent);
+  border-color: var(--accent);
+  box-shadow: 0 0 0 2px var(--focus-ring);
 }
 
 button {
