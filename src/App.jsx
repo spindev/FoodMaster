@@ -144,24 +144,34 @@ export default function App() {
   }
 
   return (
-    <>
+    <div className="app-shell">
       <header className="app-header">
-        <h1>{t.appTitle}</h1>
-        <div className="header-controls">
-          <label htmlFor="language">{t.language}</label>
-          <select id="language" value={language} onChange={(event) => setLanguage(event.target.value)}>
-            <option value="de">Deutsch</option>
-            <option value="en">English</option>
-          </select>
-          <button type="button" onClick={() => setTheme((prev) => (prev === 'dark' ? 'light' : 'dark'))}>
-            {theme === 'dark' ? t.themeLight : t.themeDark}
-          </button>
+        <div className="app-header-content">
+          <div className="app-title-wrap">
+            <div className="app-icon">🍱</div>
+            <div>
+              <h1>{t.appTitle}</h1>
+              <p className="app-subtitle">{t.listTitle}</p>
+            </div>
+          </div>
+          <div className="header-controls">
+            <label htmlFor="language">{t.language}</label>
+            <select id="language" value={language} onChange={(event) => setLanguage(event.target.value)}>
+              <option value="de">Deutsch</option>
+              <option value="en">English</option>
+            </select>
+            <button type="button" onClick={() => setTheme((prev) => (prev === 'dark' ? 'light' : 'dark'))}>
+              {theme === 'dark' ? t.themeLight : t.themeDark}
+            </button>
+          </div>
         </div>
       </header>
 
       <main>
         <section className="card">
-          <h2>{t.addItem}</h2>
+          <div className="card-head">
+            <h2>{t.addItem}</h2>
+          </div>
           <form onSubmit={handleSubmit}>
             <div className="grid">
               <label>
@@ -215,7 +225,9 @@ export default function App() {
         </section>
 
         <section className="card">
-          <h2>{t.listTitle}</h2>
+          <div className="card-head">
+            <h2>{t.listTitle}</h2>
+          </div>
           <div className="table-wrap">
             <table>
               <thead>
@@ -250,6 +262,8 @@ export default function App() {
           </div>
         </section>
       </main>
-    </>
+
+      <footer className="app-footer">Made by SpinDev &amp; Copilot with ❤️</footer>
+    </div>
   )
 }
