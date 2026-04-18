@@ -153,17 +153,19 @@ export default function App() {
             <div className="app-icon" role="img" aria-label="FoodMaster icon">
               🍱
             </div>
-            <div>
+            <header className="app-title-text">
               <h1>{t.appTitle}</h1>
               <p className="app-subtitle">{t.appSubtitle}</p>
-            </div>
+            </header>
           </div>
           <div className="header-controls">
-            <label htmlFor="language">{t.language}</label>
-            <select id="language" value={language} onChange={(event) => setLanguage(event.target.value)}>
-              <option value="de">Deutsch</option>
-              <option value="en">English</option>
-            </select>
+            <label className="language-control">
+              <span>{t.language}</span>
+              <select value={language} onChange={(event) => setLanguage(event.target.value)}>
+                <option value="de">Deutsch</option>
+                <option value="en">English</option>
+              </select>
+            </label>
             <button type="button" onClick={() => setTheme((prev) => (prev === 'dark' ? 'light' : 'dark'))}>
               {theme === 'dark' ? t.themeLight : t.themeDark}
             </button>

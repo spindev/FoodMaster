@@ -114,6 +114,13 @@ main,
   font-weight: 600;
 }
 
+.language-control {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.45rem;
+}
+
 .card {
   background: var(--surface);
   border: 1px solid var(--border);
@@ -256,5 +263,9 @@ td {
 
   .header-controls label {
     width: 100%;
+  }
+
+  .language-control {
+    justify-content: space-between;
   }
 }
