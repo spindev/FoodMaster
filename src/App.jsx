@@ -14,6 +14,7 @@ const TRANSLATIONS = {
   en: {
     language: 'Language',
     appTitle: 'FoodMaster',
+    appSubtitle: 'Fridge, pantry and freezer organizer',
     addItem: 'Add food item',
     name: 'Name',
     quantity: 'Quantity',
@@ -32,6 +33,7 @@ const TRANSLATIONS = {
   de: {
     language: 'Sprache',
     appTitle: 'FoodMaster',
+    appSubtitle: 'Kühlschrank-, Vorrats- und Gefrierfach-Organizer',
     addItem: 'Lebensmittel hinzufügen',
     name: 'Name',
     quantity: 'Menge',
@@ -151,7 +153,7 @@ export default function App() {
             <div className="app-icon">🍱</div>
             <div>
               <h1>{t.appTitle}</h1>
-              <p className="app-subtitle">{t.listTitle}</p>
+              <p className="app-subtitle">{t.appSubtitle}</p>
             </div>
           </div>
           <div className="header-controls">
