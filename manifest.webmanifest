@@ -1,7 +1,7 @@
 {
   "name": "FoodMaster",
   "short_name": "FoodMaster",
-  "lang": "en",
+  "lang": "de",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",

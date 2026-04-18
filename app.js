@@ -95,7 +95,7 @@ function applyTheme(theme) {
 
 function nowForDateTimeLocal() {
   const date = new Date();
-  const tzOffsetMs = date.getTimezoneOffset() * 60_000;
+  const tzOffsetMs = date.getTimezoneOffset() * 60 * 1000;
   return new Date(date.getTime() - tzOffsetMs).toISOString().slice(0, 16);
 }
 
@@ -181,7 +181,10 @@ itemForm.addEventListener("submit", (event) => {
   };
 
   if (!newItem.name || !newItem.quantity || !newItem.bestBefore) return;
-  if (!Object.prototype.hasOwnProperty.call(ICONS, newItem.category)) return;
+  if (!Object.prototype.hasOwnProperty.call(ICONS, newItem.category)) {
+    console.warn("Invalid category value submitted:", newItem.category);
+    return;
+  }
 
   items = [newItem, ...items];
   saveItems();
