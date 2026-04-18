@@ -75,7 +75,7 @@ function saveItems() {
 function detectLanguage() {
   const saved = localStorage.getItem(LANGUAGE_KEY);
   if (saved && TRANSLATIONS[saved]) return saved;
-  const browserLanguage = (navigator.languages && navigator.languages[0]) || navigator.language || "en";
+  const browserLanguage = navigator.languages?.[0] || navigator.language || "en";
   return browserLanguage.toLowerCase().startsWith("de") ? "de" : "en";
 }
 
