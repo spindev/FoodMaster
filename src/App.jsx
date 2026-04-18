@@ -144,9 +144,17 @@ export default function App() {
   }
 
   return (
-    <>
+    <div className="app-shell">
       <header className="app-header">
-        <h1>{t.appTitle}</h1>
+        <div className="title-group">
+          <div className="title-icon" aria-hidden="true">
+            🥗
+          </div>
+          <div>
+            <h1>{t.appTitle}</h1>
+            <p className="title-subtitle">{t.listTitle}</p>
+          </div>
+        </div>
         <div className="header-controls">
           <label htmlFor="language">{t.language}</label>
           <select id="language" value={language} onChange={(event) => setLanguage(event.target.value)}>
@@ -250,6 +258,7 @@ export default function App() {
           </div>
         </section>
       </main>
-    </>
+      <footer className="app-footer">Made by SpinDev &amp; Copilot with ❤️</footer>
+    </div>
   )
 }
