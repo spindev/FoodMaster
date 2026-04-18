@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#0b7a75" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <title>FoodMaster</title>
+    <link rel="manifest" href="./manifest.webmanifest" />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <header class="app-header">
+      <h1 id="app-title">FoodMaster</h1>
+      <div class="header-controls">
+        <label for="language" id="language-label">Language</label>
+        <select id="language" aria-labelledby="language-label">
+          <option value="de">Deutsch</option>
+          <option value="en">English</option>
+        </select>
+        <button id="theme-toggle" type="button"></button>
+      </div>
+    </header>
+
+    <main>
+      <section class="card">
+        <h2 id="form-title"></h2>
+        <form id="item-form">
+          <div class="grid">
+            <label>
+              <span id="name-label"></span>
+              <input id="name" name="name" required maxlength="120" />
+            </label>
+            <label>
+              <span id="quantity-label"></span>
+              <input id="quantity" name="quantity" required maxlength="40" />
+            </label>
+            <label>
+              <span id="category-label"></span>
+              <select id="category" name="category" required>
+                <option value="fridge">🧊 Fridge</option>
+                <option value="pantry">🥫 Pantry</option>
+                <option value="freezer">❄️ Freezer</option>
+              </select>
+            </label>
+            <label>
+              <span id="added-label"></span>
+              <input id="addedAt" name="addedAt" type="datetime-local" readonly />
+            </label>
+            <label>
+              <span id="best-before-label"></span>
+              <input id="bestBefore" name="bestBefore" type="date" required />
+            </label>
+          </div>
+          <button id="submit-button" type="submit"></button>
+        </form>
+      </section>
+
+      <section class="card">
+        <h2 id="list-title"></h2>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th id="th-category"></th>
+                <th id="th-name"></th>
+                <th id="th-quantity"></th>
+                <th id="th-added"></th>
+                <th id="th-best-before"></th>
+              </tr>
+            </thead>
+            <tbody id="items-table-body"></tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+
+    <script src="./app.js" defer></script>
+  </body>
+</html>
