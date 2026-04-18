@@ -159,13 +159,13 @@ export default function App() {
             </div>
           </div>
           <div className="header-controls">
-            <label htmlFor="language-select">
+            <label>
               <span>{t.language}</span>
+              <select value={language} onChange={(event) => setLanguage(event.target.value)}>
+                <option value="de">Deutsch</option>
+                <option value="en">English</option>
+              </select>
             </label>
-            <select id="language-select" value={language} onChange={(event) => setLanguage(event.target.value)}>
-              <option value="de">Deutsch</option>
-              <option value="en">English</option>
-            </select>
             <button type="button" onClick={() => setTheme((prev) => (prev === 'dark' ? 'light' : 'dark'))}>
               {theme === 'dark' ? t.themeLight : t.themeDark}
             </button>
@@ -270,7 +270,7 @@ export default function App() {
       </main>
 
       <footer className="app-footer">
-        Made by SpinDev &amp; Copilot with <span role="img" aria-label="love">❤️</span>
+        Made by spindev &amp; Copilot with <span role="img" aria-label="love">❤️</span>
       </footer>
     </div>
   )
