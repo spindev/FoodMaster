@@ -1,5 +1,8 @@
-FROM nginx:1.27-alpine
-WORKDIR /usr/share/nginx/html
-COPY . /usr/share/nginx/html
-RUN rm -rf /usr/share/nginx/html/.git /usr/share/nginx/html/.github
-EXPOSE 80
+FROM node:22-alpine
+WORKDIR /app
+COPY package*.json ./
+RUN npm ci
+COPY . .
+RUN npm run build
+EXPOSE 4173
+CMD ["npm", "run", "preview", "--", "--host", "0.0.0.0", "--port", "4173"]

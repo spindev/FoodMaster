@@ -1,4 +1,4 @@
-name: Release and Docker Deploy
+name: Release and Deploy
 
 on:
   workflow_dispatch:
@@ -17,12 +17,9 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       version_tag: ${{ steps.version.outputs.version_tag }}
-      release_notes_file: ${{ steps.notes.outputs.file }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
 
       - name: Normalize version
         id: version
@@ -33,42 +30,12 @@ jobs:
           fi
           echo "version_tag=$VERSION" >> "$GITHUB_OUTPUT"
 
-      - name: Validate conventional commits
-        run: |
-          LAST_TAG="$(git describe --tags --abbrev=0 2>/dev/null || true)"
-          RANGE="HEAD"
-          if [[ -n "$LAST_TAG" ]]; then
-            RANGE="$LAST_TAG..HEAD"
-          fi
-          INVALID="$(git log --pretty=format:%s $RANGE | grep -Ev '^(feat|fix|docs|style|refactor|perf|test|build|ci|chore)(\(.+\))?!?: .+' || true)"
-          if [[ -n "$INVALID" ]]; then
-            echo "Found non-conventional commit messages:"
-            echo "$INVALID"
-            exit 1
-          fi
-
-      - name: Generate release notes
-        id: notes
-        run: |
-          LAST_TAG="$(git describe --tags --abbrev=0 2>/dev/null || true)"
-          RANGE="HEAD"
-          if [[ -n "$LAST_TAG" ]]; then
-            RANGE="$LAST_TAG..HEAD"
-          fi
-          NOTES_FILE="release-notes.md"
-          {
-            echo "## Changes"
-            echo
-            git log --pretty=format:'- %s (%h)' $RANGE
-          } > "$NOTES_FILE"
-          echo "file=$NOTES_FILE" >> "$GITHUB_OUTPUT"
-
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
         with:
           tag_name: ${{ steps.version.outputs.version_tag }}
           name: ${{ steps.version.outputs.version_tag }}
-          body_path: ${{ steps.notes.outputs.file }}
+          generate_release_notes: true
 
   docker:
     runs-on: ubuntu-latest

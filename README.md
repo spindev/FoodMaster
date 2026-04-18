@@ -1,45 +1,50 @@
 # FoodMaster
 
-A self-hostable Progressive Web App to keep food organized in fridge, pantry and freezer.
+A self-hostable Progressive Web App built with React + Vite to keep food organized in fridge, pantry and freezer.
 
 ## Features
 
-- PWA support for Android and iOS (manifest + service worker)
+- React + Vite app with manifest + service worker for Android/iOS install support
 - Light and dark mode toggle
 - i18n with German (`de`) and English (`en`)
 - Automatic language detection from browser settings
 - Track:
-  - Category (with icons): 🧊 fridge, 🥫 pantry, ❄️ freezer
+  - Category with icons: 🧊 fridge, 🥫 pantry, ❄️ freezer
   - Name
   - Quantity
-  - Added date/time (auto-filled with current date/time)
+  - Added date/time (auto-filled)
   - Best-before date
 - Local persistence in browser storage
 
+## Local development
+
+```bash
+npm ci
+npm run dev
+```
+
 ## Demo via GitHub Pages
 
-The workflow `.github/workflows/gh-pages-demo.yml` deploys the static app to GitHub Pages on pushes to `main` (or manually).
+`.github/workflows/gh-pages-demo.yml` builds the Vite app and deploys `dist/` to GitHub Pages.
 
-## Docker deployment
-
-Build and run:
+## Docker deployment (Node runtime)
 
 ```bash
 docker build -t foodmaster .
-docker run --rm -p 8080:80 foodmaster
+docker run --rm -p 4173:4173 foodmaster
 ```
 
-Then open `http://localhost:8080`.
+Then open `http://localhost:4173`.
 
 ## Release and deploy workflow
 
-Use `.github/workflows/release-and-deploy.yml` with manual trigger input `version`.
+Use `.github/workflows/release-and-deploy.yml` with manual input `version`.
 
 It will:
 
-1. Validate Conventional Commit message format in commits since last tag
-2. Generate release notes from commit messages
-3. Create a GitHub Release
-4. Build and push Docker image to GHCR:
+1. Create a GitHub Release for the provided version tag (with generated release notes)
+2. Build and push Docker images to GHCR:
    - `ghcr.io/<owner>/foodmaster:vX.Y.Z`
    - `ghcr.io/<owner>/foodmaster:latest`
+
+Commit messages should follow conventional commits.
