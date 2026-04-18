@@ -71,7 +71,15 @@ function nowForDateTimeLocal() {
 function parseItems() {
   try {
     const parsed = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]')
-    return Array.isArray(parsed) ? parsed : []
+    if (!Array.isArray(parsed)) return []
+    return parsed.map((item, index) => ({
+      ...item,
+      id:
+        item?.id ||
+        (typeof crypto !== 'undefined' && crypto.randomUUID
+          ? crypto.randomUUID()
+          : `${item?.name || 'item'}-${item?.addedAt || Date.now()}-${index}`),
+    }))
   } catch {
     return []
   }
@@ -113,7 +121,18 @@ export default function App() {
     }
     if (!form.name.trim() || !form.quantity.trim() || !form.bestBefore) return
 
-    setItems((prev) => [{ ...form, name: form.name.trim(), quantity: form.quantity.trim() }, ...prev])
+    setItems((prev) => [
+      {
+        ...form,
+        id:
+          typeof crypto !== 'undefined' && crypto.randomUUID
+            ? crypto.randomUUID()
+            : `${form.name}-${form.addedAt}-${Date.now()}`,
+        name: form.name.trim(),
+        quantity: form.quantity.trim(),
+      },
+      ...prev,
+    ])
     setForm((prev) => ({
       ...prev,
       name: '',
@@ -216,8 +235,8 @@ export default function App() {
                     </td>
                   </tr>
                 ) : (
-                  items.map((item, index) => (
-                    <tr key={`${item.name}-${item.addedAt}-${index}`}>
+                  items.map((item) => (
+                    <tr key={item.id}>
                       <td>{`${ICONS[item.category] || '📦'} ${t[item.category] || item.category}`}</td>
                       <td>{item.name}</td>
                       <td>{item.quantity}</td>
